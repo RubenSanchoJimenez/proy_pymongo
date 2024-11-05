@@ -1,0 +1,113 @@
+@import 'bootstrap/dist/css/bootstrap.min.css';
+
+html, body{
+    margin: 0;
+    padding: 0;
+    min-height: 100vh;
+    font-family: Montserrat, sans-serif;
+    background-color: #e5e5e5;
+}
+
+/* Customs Fonts */
+
+ /* Montserrat */
+
+@font-face {
+    font-family: 'Montserrat';
+    src: url('assets/fonts/montserrat/Montserrat-VariableFont_wght.ttf') format('truetype');
+}
+.montserrat {
+    font-family: 'Montserrat', sans-serif;
+}
+
+@font-face {
+  font-family: 'Montserrat-Bold';
+  src: url('assets/fonts/montserrat/Montserrat-Bold.ttf') format('truetype');
+}
+.montserrat-bold {
+    font-family: 'Montserrat-Bold', sans-serif;
+}
+
+@font-face {
+  font-family: 'Montserrat-Italic';
+  src: url('assets/fonts/montserrat/Montserrat-Italic-VariableFont_wght.ttf') format('truetype');
+}
+.montserrat-italic {
+    font-family: 'Montserrat-Italic', sans-serif;
+}
+
+@font-face {
+  font-family: 'Montserrat-Black';
+  src: url('assets/fonts/montserrat/Montserrat-Black.ttf') format('truetype');
+}
+.montserrat-black {
+    font-family: 'Montserrat-Black', sans-serif;
+}
+
+@font-face {
+  font-family: 'Montserrat-Black-Italic';
+  src: url('assets/fonts/montserrat/Montserrat-BlackItalic.ttf') format('truetype');
+}
+.montserrat-black-italic {
+    font-family: 'Montserrat-Black-Italic', sans-serif;
+}
+
+  /* Alegreya */
+
+@font-face {
+  font-family: 'Alegreya';
+  src: url('assets/fonts/alegreya/Alegreya-VariableFont_wght.ttf') format('truetype');
+}
+.Alegreya {
+  font-family: 'Alegreya', sans-serif;
+}
+
+@font-face {
+  font-family: 'Alegreya-Bold';
+  src: url('assets/fonts/alegreya/Alegreya-Bold.ttf') format('truetype');
+}
+.Alegreya-bold {
+  font-family: 'Alegreya-Bold', sans-serif;
+}
+
+@font-face {
+  font-family: 'Alegreya-Italic';
+  src: url('assets/fonts/alegreya/Alegreya-Italic.ttf') format('truetype');
+}
+.Alegreya-italic {
+  font-family: 'Alegreya-Italic', sans-serif;
+}
+
+@font-face {
+  font-family: 'Alegreya-Black';
+  src: url('assets/fonts/alegreya/Alegreya-Black.ttf') format('truetype');
+}
+.Alegreya-black {
+  font-family: 'Alegreya-Black', sans-serif;
+}
+
+@font-face {
+  font-family: 'Alegreya-Black-Italic';
+  src: url('assets/fonts/alegreya/Alegreya-BlackItalic.ttf') format('truetype');
+}
+.Alegreya-black-italic {
+  font-family: 'Alegreya-Black-Italic', sans-serif;
+}
+
+/* Customs styles */
+
+.rem2 {
+  font-size: 2rem;
+}
+
+.rem5 {
+  font-size: 5rem;
+}
+
+.text-subtitle {
+  color: #b1b1b1;
+}
+
+.min-height {
+  min-height: 93vh;
+}
