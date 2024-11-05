@@ -1,0 +1,36 @@
+.custom-card {
+    width: 70%;
+    height: 50vh;
+    box-shadow: black 0 0 20px;
+    transition: transform 0.3s; /* Agrega una transición suave */
+  }
+  
+  .custom-card:hover {
+    cursor: pointer;
+    box-shadow: black 0 0 30px;
+    transform: scale(1.05); /* Aumenta el tamaño en un 5% */
+  }
+  
+  .custom-card p {
+    opacity: 0; /* Oculta el párrafo */
+    transform: translateX(100%); /* Mueve el párrafo hacia la derecha */
+    transition: opacity 0.3s, transform 0.3s; /* Transición suave para la opacidad y la transformación */
+  }
+  
+  .custom-card:hover p {
+    opacity: 1; /* Muestra el párrafo al hacer hover */
+    transform: translateX(0); /* Regresa el párrafo a su posición original */
+  }
+  
+  .custom-padding{
+    height: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    align-content: center;
+    padding: 3.5vh 10%;
+  }
+
+  .card-center{
+    height: auto;
+    width: 100%;
+  }
