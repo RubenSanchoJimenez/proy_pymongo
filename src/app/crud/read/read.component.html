@@ -3,69 +3,62 @@
         <h4 class="montserrat-bold">Documentos</h4>
         <hr class="mb-5">
         <div class="row mb-5">
+            <!-- Marcas -->
             <div class="col-3">
                 <label for="brands" class="form-label">Marcas</label>
-                <select class="form-select" id="inputGroupSelect01">
+                <select class="form-select" [(ngModel)]="selectedBrand">
                     <option selected>Selecciona...</option>
-                    <option value="1">One</option>
-                    <option value="2">Two</option>
-                    <option value="3">Three</option>
+                    <option *ngFor="let brand of brands" [value]="brand">{{ brand }}</option>
                 </select>
             </div>
+            <!-- Colores -->
             <div class="col-3">
-                <label for="brands" class="form-label">Colores</label>
-                <select class="form-select" id="inputGroupSelect01">
+                <label for="colors" class="form-label">Colores</label>
+                <select class="form-select" [(ngModel)]="selectedColor">
                     <option selected>Selecciona...</option>
-                    <option value="1">One</option>
-                    <option value="2">Two</option>
-                    <option value="3">Three</option>
+                    <option *ngFor="let color of colors" [value]="color">{{ color }}</option>
                 </select>
             </div>
+            <!-- Disponibilidad -->
             <div class="col-3">
-                <label for="brands" class="form-label">Disponibilidad</label>
-                <select class="form-select" id="inputGroupSelect01">
+                <label for="availability" class="form-label">Disponibilidad</label>
+                <select class="form-select" [(ngModel)]="selectedAvailability">
                     <option selected>Selecciona...</option>
-                    <option value="1">One</option>
-                    <option value="2">Two</option>
-                    <option value="3">Three</option>
+                    <option *ngFor="let availability of availabilitys" [value]="availability">{{ availability }}</option>
                 </select>
             </div>
+            <!-- Condición -->
             <div class="col-3">
-                <label for="brands" class="form-label">Condición</label>
-                <select class="form-select" id="inputGroupSelect01">
+                <label for="condition" class="form-label">Condición</label>
+                <select class="form-select" [(ngModel)]="selectedCondition">
                     <option selected>Selecciona...</option>
-                    <option value="1">One</option>
-                    <option value="2">Two</option>
-                    <option value="3">Three</option>
+                    <option *ngFor="let condition of conditions" [value]="condition">{{ condition }}</option>
                 </select>
             </div>
         </div>
         <div class="row mb-5">
+            <!-- Atributo elegido -->
             <div class="col-3">
-                <label for="brands" class="form-label">Talla</label>
-                <select class="form-select" id="inputGroupSelect01">
+                <label for="size" class="form-label">Atributo</label>
+                <select class="form-select" [(ngModel)]="selectedAttribute">
                     <option selected>Selecciona...</option>
-                    <option value="1">One</option>
-                    <option value="2">Two</option>
-                    <option value="3">Three</option>
+                    <option *ngFor="let attribute of attributes" [value]="attribute">{{ attribute }}</option>
                 </select>
             </div>
+            <!-- Valor -->
             <div class="col-9">
-                <label for="brands" class="form-label">Valor</label>
-                <input type="text" class="form-control">
+                <label for="value" class="form-label">Valor</label>
+                <input type="text" class="form-control" [(ngModel)]="value">
             </div>
         </div>
         <div class="row">
             <div class="col-12 d-flex justify-content-end">
-                <button type="button" class="btn btn-primary me-3">
-                    Resetear
-                </button>
-                <button type="button" class="btn btn-primary">
-                    Buscar
-                </button>
+                <button type="button" class="btn btn-primary me-3" (click)="resetFilters()">Resetear</button>
+                <button type="button" class="btn btn-primary" (click)="searchDocuments()">Buscar</button>
             </div>
         </div>
     </div>
+    
     <div class="m-5 p-5 rounded bg-light">
         <div class="row">
             <div class="col-4">
@@ -75,10 +68,9 @@
                 <span class="montserrat-bold">Total de documentos: </span>
             </div>
             <div class="col-4">
-                <span class="montserrat-bold">Total de resultados: </span>
+                <span class="montserrat-bold">Total de resultados: {{ totalResults }}</span>
             </div>
         </div>
         <hr class="mb-5">
-        
     </div>
 </div>
