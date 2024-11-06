@@ -24,16 +24,15 @@ export class CreateComponent {
     if (input.files && input.files.length > 0) {
       this.selectedFile = input.files[0];
       
-      // Leer el archivo
       const reader = new FileReader();
       reader.onload = () => {
         try {
-          this.fileContent = JSON.parse(reader.result as string); // Asume JSON válido
+          this.fileContent = JSON.parse(reader.result as string);
         } catch (e) {
           console.error("El archivo no es un JSON válido.", e);
         }
       };
-      reader.readAsText(this.selectedFile); // Leer como texto
+      reader.readAsText(this.selectedFile);
     }
   }
 
@@ -46,10 +45,9 @@ export class CreateComponent {
         text: "Archivo subido con éxito"
       });
 
-      // Procesa `fileContent` según tus necesidades
-
-      // Reinicia el input
+      // Reset input
       this.resetFileInput();
+
     } else {
       Swal.fire({
         icon: "error",
@@ -60,8 +58,8 @@ export class CreateComponent {
   }
 
   resetFileInput(): void {
-    this.fileInput.nativeElement.value = ""; // Reinicia el campo input
-    this.fileContent = null; // Limpia el contenido para evitar datos obsoletos
+    this.fileInput.nativeElement.value = "";
+    this.fileContent = null;
   }
 
 }
