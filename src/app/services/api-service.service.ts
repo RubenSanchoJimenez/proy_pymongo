@@ -10,7 +10,7 @@ export class ApiService {
 
   constructor(private http: HttpClient) { }
 
-  getData(filters: { brand?: string; condition?: string; availability?: string; [key: string]: any }): Observable<any> {
+  getData(filters: { brand?: string; condition?: string; availability?: string; color?: string; [key: string]: any }): Observable<any> {
     let params = new HttpParams();
   
     // Añade solo los filtros que estén definidos
@@ -23,6 +23,9 @@ export class ApiService {
     if (filters.availability) {
       params = params.set('availability', filters.availability);
     }
+    if (filters.color) {
+      params = params.set('color', filters.color)
+    }
   
     // Añade filtros adicionales dinámicamente, si existen
     Object.keys(filters).forEach(key => {
@@ -31,8 +34,6 @@ export class ApiService {
       }
     });
 
-    console.log(this.http.get<any>(`${this.apiUrl}/filter/`, { params }))
-  
     return this.http.get<any>(`${this.apiUrl}/filter/`, { params });
   }
   
@@ -60,41 +61,4 @@ export class ApiService {
   getDocuments(): Observable<any[]> {
     return this.http.get<any[]>(`${this.apiUrl}/read_documents/`);
   }
-
-  /*
-  getColors(): Observable<[]> {
-    return this.http.get(`${this.apiUrl}/read_colors/`) as Observable<[]>;
-  }
-  */
-
-  //URLs:
-  // read_attributes/
-  // read_availability/
-  // read_brands/
-  // read_colors/
-  // read_conditions/
-  // read_documents/
-  // filter
-  // Ejemplo de filter: http://localhost:8000/filter/?brand=ZARA&condition=NewCondition&availability=InStock
-
-
-  /*
-
-  getData(endpoint: string, params?: HttpParams): Observable<any> {
-    return this.http.get<any>(`${this.apiUrl}/${endpoint}`, { params });
-  }
-
-  postData(endpoint: string, data: any, params?: HttpParams): Observable<any> {
-    return this.http.post<any>(`${this.apiUrl}/${endpoint}`, data, { params });
-  }
-
-  putData(endpoint: string, data: any, params?: HttpParams): Observable<any> {
-    return this.http.put<any>(`${this.apiUrl}/${endpoint}`, data, { params });
-  }
-
-  deleteData(endpoint: string, params?: HttpParams): Observable<any> {
-    return this.http.delete<any>(`${this.apiUrl}/${endpoint}`, { params });
-  }
-
-  */
 }

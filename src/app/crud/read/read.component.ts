@@ -100,7 +100,8 @@ export class ReadComponent implements OnInit {
     const filters: { [key: string]: any } = {
       brand: this.selectedBrand,
       condition: this.selectedCondition,
-      availability: this.selectedAvailability
+      availability: this.selectedAvailability,
+      color: this.selectedColor
     };
   
     if (this.selectedAttribute) {
@@ -109,11 +110,12 @@ export class ReadComponent implements OnInit {
 
     this.apiService.getData(filters).subscribe(
       (response) => {
-        this.documents = response.documents;  // Asume que la respuesta incluye `documents`
-        this.totalResults = response.totalResults; // Si la respuesta tiene un total
+        this.documents = response;
+        this.totalResults = response.length;
+        this.generalService.getShortSuccesMessage("Consulta realizada")
       },
       (error) => {
-        console.error('Error al obtener documentos:', error);
+        this.generalService.getShortErrorMessage("Error de consulta")
       }
     );
   }

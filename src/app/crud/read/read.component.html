@@ -7,7 +7,6 @@
             <div class="col-3">
                 <label for="brands" class="form-label">Marcas</label>
                 <select class="form-select" [(ngModel)]="selectedBrand">
-                    <option selected>Selecciona...</option>
                     <option *ngFor="let brand of brands" [value]="brand">{{ brand }}</option>
                 </select>
             </div>
@@ -15,7 +14,6 @@
             <div class="col-3">
                 <label for="colors" class="form-label">Colores</label>
                 <select class="form-select" [(ngModel)]="selectedColor">
-                    <option selected>Selecciona...</option>
                     <option *ngFor="let color of colors" [value]="color">{{ color }}</option>
                 </select>
             </div>
@@ -31,7 +29,6 @@
             <div class="col-3">
                 <label for="condition" class="form-label">Condición</label>
                 <select class="form-select" [(ngModel)]="selectedCondition">
-                    <option selected>Selecciona...</option>
                     <option *ngFor="let condition of conditions" [value]="condition">{{ condition }}</option>
                 </select>
             </div>
@@ -41,7 +38,6 @@
             <div class="col-3">
                 <label for="size" class="form-label">Atributo</label>
                 <select class="form-select" [(ngModel)]="selectedAttribute">
-                    <option selected>Selecciona...</option>
                     <option *ngFor="let attribute of attributes" [value]="attribute">{{ attribute }}</option>
                 </select>
             </div>
@@ -72,5 +68,35 @@
             </div>
         </div>
         <hr class="mb-5">
+        <div *ngFor="let doc of documents" class="mb-4">
+            <div class="row mb-4 border rounded p-3 shadow-sm bg-light">
+              <!-- Columna izquierda (Nombre, Marca, Condición, Disponibilidad) -->
+              <div class="col-md-4">
+                <h5 class="montserrat-bold">{{ doc.name }}</h5>
+                <p><strong>Marca:</strong> {{ doc.brand }}</p>
+                <p><strong>Condición:</strong> {{ doc.condition }}</p>
+                <p><strong>Disponibilidad:</strong> {{ doc.availability }}</p>
+              </div>
+              
+              <!-- Columna central (Descripción, Precio, Enlace) -->
+              <div class="col-md-4">
+                <p><strong>Descripción:</strong> {{ doc.description }}</p>
+                <p><strong>Precio:</strong> {{ doc.price }} {{ doc.currency }}</p>
+                <a [href]="doc.url" target="_blank" class="btn btn-primary">Ver Producto</a>
+              </div>
+              
+              <!-- Columna vacía (sin imagen) -->
+              <div class="col-md-4"></div>
+            </div>
+          
+            <!-- Botón rojo en la parte inferior derecha -->
+            <div class="text-end">
+                <button class="btn btn-primary me-3"><img src="assets/icons/pencil-solid.svg" width="24" height="24" alt="Formadores"></button>
+                <button class="btn btn-danger"><img src="assets/icons/trash-solid.svg" width="24" height="24" alt="Formadores"></button>
+            </div>
+            
+            <!-- Separador -->
+            <hr class="my-4">
+          </div>          
     </div>
 </div>
