@@ -1,6 +1,7 @@
 import { Component, ElementRef, ViewChild } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import Swal from 'sweetalert2'
+import { GeneralService } from '../../services/general-service';
 
 @Component({
   selector: 'app-create',
@@ -17,7 +18,7 @@ export class CreateComponent {
   fileContent: any = null;
   selectedFile: File | null = null;
 
-  constructor() {}
+  constructor(private generalService: GeneralService) {}
 
   onFileSelected(event: Event): void {
     const input = event.target as HTMLInputElement;
@@ -39,21 +40,13 @@ export class CreateComponent {
   setData(): void {
     if (this.fileContent) {
       console.log(this.fileContent) 
-      Swal.fire({
-        icon: "success",
-        title: "Yeaahhh!!!",
-        text: "Archivo subido con éxito"
-      });
+      this.generalService.getSuccesMessage("Yeaaahh!!", "Documentos subidos correctamente")
 
       // Reset input
       this.resetFileInput();
 
     } else {
-      Swal.fire({
-        icon: "error",
-        title: "Oops...",
-        text: "Archivo no valido o no existe, pruebe de nuevo"
-      });
+      this.generalService.getErrorMessage("Oops!!", "Archivo no válido o inexistente")
     }
   }
 
