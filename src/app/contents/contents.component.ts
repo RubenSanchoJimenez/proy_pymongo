@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
+import { GeneralService } from '../services/general-service';
 
 @Component({
   selector: 'app-contents',
@@ -8,5 +9,14 @@ import { Component } from '@angular/core';
   styleUrl: './contents.component.css'
 })
 export class ContentsComponent {
+  
+  private generalService = inject(GeneralService);
+  colors: any;
 
+  ngOnInit(): void {
+    this.generalService.getColors().subscribe((data: any) => {
+      console.log(data);
+      this.colors = data;
+    });
+  }
 }
