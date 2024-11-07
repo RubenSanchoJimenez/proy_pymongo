@@ -75,4 +75,13 @@ export class ApiService {
     return this.http.put(url, doc, { headers });
   }
 
+  createDocuments(doc: any): Observable<any> {
+    console.log(doc)
+    const url = `${this.apiUrl}/create_document/`;
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json'
+    });
+    return this.http.post(url, doc, { headers });
+  }
+
 }

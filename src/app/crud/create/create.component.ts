@@ -2,6 +2,7 @@ import { Component, ElementRef, ViewChild } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import Swal from 'sweetalert2'
 import { GeneralService } from '../../services/general-service';
+import { ApiService } from '../../services/api-service.service';
 
 @Component({
   selector: 'app-create',
@@ -18,7 +19,7 @@ export class CreateComponent {
   fileContent: any = null;
   selectedFile: File | null = null;
 
-  constructor(private generalService: GeneralService) {}
+  constructor(private generalService: GeneralService, private apiService: ApiService) {}
 
   onFileSelected(event: Event): void {
     const input = event.target as HTMLInputElement;
@@ -39,9 +40,17 @@ export class CreateComponent {
 
   setData(): void {
     if (this.fileContent) {
+      this.apiService.createDocuments(this.fileContent).subscribe(
+        (response: any) => {
+          console.log(response);
+          this.generalService.getSuccesMessage("Yeaaahh!!", "Documentos subidos correctamente")
+        },
+        (error) => {
+          this.generalService.getShortErrorMessage('Error al subir los documentos');
+        }
+      );
       console.log(this.fileContent) 
-      this.generalService.getSuccesMessage("Yeaaahh!!", "Documentos subidos correctamente")
-
+      
       // Reset input
       this.resetFileInput();
 
