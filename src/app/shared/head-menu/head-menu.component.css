@@ -1,3 +1,9 @@
 .head-menu {
   height: 7vh;
 }
+.contenedor{
+  background-color: transparent;
+  filter: drop-shadow(10px 10px 10px #222);
+  position: relative;
+  z-index: 1050;
+}

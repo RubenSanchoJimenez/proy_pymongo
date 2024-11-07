@@ -1,5 +1,5 @@
 <div class="custom-containers">
-    <div class="m-5 p-5 rounded bg-light shadow">
+    <div class="m-5 p-5 rounded contenedor bg-light shadow fw-bold">
         <h4 class="montserrat-bold">Documentos</h4>
         <hr class="mb-5">
         <div class="row mb-5">
@@ -48,13 +48,13 @@
         </div>
         <div class="row">
             <div class="col-12 d-flex justify-content-end">
-                <button type="button" class="btn btn-primary me-3" (click)="resetFilters()">Resetear</button>
-                <button type="button" class="btn btn-primary" (click)="searchDocuments()">Buscar</button>
+                <button type="button" class="glow-on-hover btn-primary me-3" (click)="resetFilters()">Resetear</button>
+                <button type="button" class="glow-on-hover btn-primary" (click)="searchDocuments()">Buscar</button>
             </div>
         </div>
     </div>
     
-    <div class="m-5 p-5 rounded bg-light shadow">
+    <div class="m-5 p-5 rounded bg-light contenedor shadow">
         <div class="row">
             <div class="col-8">
                 <h5 class="montserrat-bold">Resultado</h5>
@@ -151,7 +151,7 @@
                 </div>
                 <div class="row">
                     <div class="col-12 d-flex justify-content-end">
-                        <button type="button" class="btn btn-primary me-3" (click)="resetFilters()">Resetear</button>
+                        <button type="button" class="glow-on-hover btn-primary me-3" (click)="resetFilters()">Resetear</button>
                     </div>
                 </div>
             </div>
@@ -175,8 +175,8 @@
             </div>
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-          <button type="button" class="btn btn-primary" (click)="saveChanges(docUpdate[0].id)">Guardar cambios</button>
+          <button type="button" class="glow-on-hover btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+          <button type="button" class="glow-on-hover btn-primary" (click)="saveChanges(docUpdate[0].id)">Guardar cambios</button>
         </div>
       </div>
     </div>
