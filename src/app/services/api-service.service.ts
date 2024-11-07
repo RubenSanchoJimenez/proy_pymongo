@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import {HttpClient, HttpParams} from '@angular/common/http';
+import {HttpClient, HttpHeaders, HttpParams} from '@angular/common/http';
 import { Observable } from 'rxjs';
 
 @Injectable({
@@ -62,13 +62,17 @@ export class ApiService {
     return this.http.get<any[]>(`${this.apiUrl}/read_documents/`);
   }
 
-  postDocuments(): Observable<any[]> {
-    let params = new HttpParams();
-    return this.http.get<any[]>(`${this.apiUrl}/update_documents/`);
-  }
-
   deleteDocument(id: Number): Observable<any[]> {
     return this.http.delete<any[]>(`${this.apiUrl}/delete_document/${id}/`);
+  }
+
+  updateDocument(id: Number, doc: any ): Observable<any> {
+    console.log(doc)
+    const url = `${this.apiUrl}/update_document/${id}/`;
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json'
+    });
+    return this.http.put(url, doc, { headers });
   }
 
 }

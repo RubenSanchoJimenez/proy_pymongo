@@ -13,7 +13,7 @@ import Swal from 'sweetalert2'
     RouterLink,
     FormsModule,
     CommonModule
-  ],
+],
   templateUrl: './read.component.html',
   styleUrls: ['./read.component.css']
 })
@@ -24,6 +24,7 @@ export class ReadComponent implements OnInit {
   conditions: any[] = [];
   attributes: any[] = [];
   documents: any[] = [];
+  docUpdate: any;
 
   selectedBrand: string = '';
   selectedColor: string = '';
@@ -32,6 +33,12 @@ export class ReadComponent implements OnInit {
   selectedAttribute: string = '';
   value: string = '';
   totalResults: number = 0;
+
+  selectedBrandUpdate: string = '';
+  selectedColorUpdate: string = '';
+  selectedAvailabilityUpdate: string = '';
+  selectedConditionUpdate: string = '';
+  
 
   constructor(
     private generalService: GeneralService,
@@ -112,6 +119,7 @@ export class ReadComponent implements OnInit {
     this.apiService.getData(filters).subscribe(
       (response) => {
         this.documents = response;
+        console.log(response)
         this.totalResults = response.length;
         this.generalService.getShortSuccesMessage("Consulta realizada")
       },
@@ -150,7 +158,50 @@ export class ReadComponent implements OnInit {
   }
 
   editDocument(idDocument: Number): void {
-    
+    this.docUpdate = this.documents.filter(doc => doc.id == idDocument);
+    console.log(this.docUpdate)
   }
+
+  saveChanges(idDocument: Number): void {
+    if (this.selectedBrandUpdate) {
+      this.docUpdate[0].brand = this.selectedBrandUpdate;
+    }
+  
+    if (this.selectedColorUpdate) {
+      this.docUpdate[0].color = this.selectedColorUpdate;
+    }
+  
+    if (this.selectedAvailabilityUpdate) {
+      this.docUpdate[0].availability = this.selectedAvailabilityUpdate;
+    }
+  
+    if (this.selectedConditionUpdate) {
+      this.docUpdate[0].condition = this.selectedConditionUpdate;
+    }
+    
+    delete this.docUpdate[0]._id
+
+    // Llamada al servicio para actualizar el documento
+    this.apiService.updateDocument(idDocument, this.docUpdate[0]).subscribe(
+      (response: any) => {
+        console.log(response);
+        console.log(this.docUpdate[0]);
+        this.generalService.getShortSuccesMessage('Documento actualizado');
+      },
+      (error) => {
+        this.generalService.getShortErrorMessage('Error al actualizar el documento');
+      }
+    );
+
+    this.resetUpdates()
+  }
+
+  resetUpdates(){
+    this.selectedConditionUpdate = ""
+    this.selectedAvailabilityUpdate = ""
+    this.selectedColorUpdate = ""
+    this.selectedBrandUpdate = ""
+  }
+  
 
 }

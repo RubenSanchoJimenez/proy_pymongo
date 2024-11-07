@@ -56,11 +56,8 @@
     
     <div class="m-5 p-5 rounded bg-light shadow">
         <div class="row">
-            <div class="col-4">
+            <div class="col-8">
                 <h5 class="montserrat-bold">Resultado</h5>
-            </div>
-            <div class="col-4">
-                <span class="montserrat-bold">Total de documentos: </span>
             </div>
             <div class="col-4">
                 <span class="montserrat-bold">Total de resultados: {{ totalResults }}</span>
@@ -92,7 +89,7 @@
               
                 <!-- Botón rojo en la parte inferior derecha -->
                 <div class="text-end">
-                    <button class="btn btn-primary me-3" (click)="editDocument(doc.id)"><img src="assets/icons/pencil-solid.svg" width="24" height="24" alt="Formadores"></button>
+                    <button class="btn btn-primary me-3" (click)="editDocument(doc.id)" data-bs-toggle="modal" data-bs-target="#update-modal"><img src="assets/icons/pencil-solid.svg" width="24" height="24" alt="Formadores"></button>
                     <button class="btn btn-danger" (click)="deleteDocument(doc.id)"><img src="assets/icons/trash-solid.svg" width="24" height="24" alt="Formadores"></button>
                 </div>
                 
@@ -102,3 +99,85 @@
         </div>      
     </div>
 </div>
+
+<div class="modal" tabindex="-1" id="update-modal">
+    <div class="modal-dialog modal-xl">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Actualizar documento</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body" *ngIf="docUpdate">
+            <div class="m-5 p-5 rounded bg-light shadow">
+                <h4 class="montserrat-bold">Documentos</h4>
+                <hr class="mb-5">
+                <div class="row mb-5">
+                    <!-- Marcas -->
+                    <div class="col-3">
+                        <label for="brandsUpdate" class="form-label">Marca</label>
+                        <input 
+                          type="text" 
+                          class="form-control" 
+                          [(ngModel)]="selectedBrandUpdate" 
+                          [placeholder]="docUpdate[0].brand">
+                    </div>
+                    <!-- Colores -->
+                    <div class="col-3">
+                        <label for="colorsUpdate" class="form-label">Color</label>
+                        <input 
+                          type="text" 
+                          class="form-control" 
+                          [(ngModel)]="selectedColorUpdate" 
+                          [placeholder]="docUpdate[0].color">
+                    </div>
+                    <!-- Disponibilidad -->
+                    <div class="col-3">
+                        <label for="availabilityUpdate" class="form-label">Disponibilidad</label>
+                        <input 
+                          type="text" 
+                          class="form-control" 
+                          [(ngModel)]="selectedAvailabilityUpdate" 
+                          [placeholder]="docUpdate[0].availability">
+                    </div>
+                    <!-- Condición -->
+                    <div class="col-3">
+                        <label for="conditionUpdate" class="form-label">Condición</label>
+                        <input 
+                          type="text" 
+                          class="form-control" 
+                          [(ngModel)]="selectedConditionUpdate" 
+                          [placeholder]="docUpdate[0].condition">
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-12 d-flex justify-content-end">
+                        <button type="button" class="btn btn-primary me-3" (click)="resetFilters()">Resetear</button>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="row m-5 border rounded p-3 shadow-sm bg-light">
+                <div class="col-md-4">
+                  <h5 class="montserrat-bold">{{ docUpdate[0].name }}</h5>
+                  <p><strong>Marca:</strong> {{ docUpdate[0].brand }}</p>
+                  <p><strong>Condición:</strong> {{ docUpdate[0].condition }}</p>
+                  <p><strong>Disponibilidad:</strong> {{ docUpdate[0].availability }}</p>
+                </div>
+                
+                <div class="col-md-4">
+                  <p><strong>Precio:</strong> {{ docUpdate[0].price }} {{ docUpdate[0].currency }}</p>
+                  <a [href]="docUpdate[0].url" target="_blank" class="btn btn-primary">Ver Producto</a>
+                </div>
+                
+                <div class="col-md-4">
+                  <p><strong>Descripción:</strong> {{ docUpdate[0].description }}</p>
+                </div>
+            </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+          <button type="button" class="btn btn-primary" (click)="saveChanges(docUpdate[0].id)">Guardar cambios</button>
+        </div>
+      </div>
+    </div>
+  </div>
