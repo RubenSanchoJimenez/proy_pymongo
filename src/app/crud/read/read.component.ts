@@ -4,6 +4,7 @@ import { GeneralService } from '../../services/general-service';
 import { ApiService } from '../../services/api-service.service';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
+import Swal from 'sweetalert2'
 
 @Component({
   selector: 'app-read',
@@ -118,6 +119,38 @@ export class ReadComponent implements OnInit {
         this.generalService.getShortErrorMessage("Error de consulta")
       }
     );
+  }
+
+  deleteDocument(idDocument: Number): void {
+    Swal.fire({
+      title: "¿Estás seguro?",
+      text: "¡El documento se borrará permanentemente!",
+      icon: "warning",
+      iconColor: '#dc3545',
+      showCancelButton: true,
+      confirmButtonColor: '#0d6efd',
+      cancelButtonColor: "#dc3545",
+      confirmButtonText: "Sí, ¡Bórralo!",
+      cancelButtonText: "Cancelar",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        this.apiService.deleteDocument(idDocument).subscribe(
+          (response) => {
+            this.documents = this.documents.filter(doc => doc.id !== idDocument);
+            this.totalResults = this.documents.length;
+            this.totalResults = response.length;
+            this.generalService.getShortSuccesMessage("Documento borrado")
+          },
+          (error) => {
+            this.generalService.getShortErrorMessage("Error al borrar documento")
+          }
+        );
+      }
+    });
+  }
+
+  editDocument(idDocument: Number): void {
+    
   }
 
 }

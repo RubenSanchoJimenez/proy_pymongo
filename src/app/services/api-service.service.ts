@@ -61,4 +61,14 @@ export class ApiService {
   getDocuments(): Observable<any[]> {
     return this.http.get<any[]>(`${this.apiUrl}/read_documents/`);
   }
+
+  postDocuments(): Observable<any[]> {
+    let params = new HttpParams();
+    return this.http.get<any[]>(`${this.apiUrl}/update_documents/`);
+  }
+
+  deleteDocument(id: Number): Observable<any[]> {
+    return this.http.delete<any[]>(`${this.apiUrl}/delete_document/${id}/`);
+  }
+
 }

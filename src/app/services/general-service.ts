@@ -1,5 +1,4 @@
 import { Injectable } from '@angular/core';
-import { text } from 'stream/consumers';
 import Swal from 'sweetalert2'
 
 @Injectable({
@@ -16,7 +15,7 @@ export class GeneralService {
       icon: 'error',
       title: error,
       showConfirmButton: false,
-      timer: 1500,
+      timer: 2500,
       timerProgressBar: false,
       didOpen: (toast) => {
         toast.addEventListener('mouseenter', Swal.stopTimer)
@@ -28,11 +27,11 @@ export class GeneralService {
   getShortSuccesMessage(success: string){
     Swal.fire({
       toast: true,
-      position: 'top-end',
+      position: 'bottom-end',
       icon: 'success',
       title: success,
       showConfirmButton: false,
-      timer: 1500,
+      timer: 2500,
       timerProgressBar: false,
       didOpen: (toast) => {
         toast.addEventListener('mouseenter', Swal.stopTimer)
